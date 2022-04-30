@@ -6,15 +6,14 @@ import { HiHome, HiShoppingCart } from "react-icons/hi";
 
 function Home() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.productReducer);
-  const carts = useSelector((state) => state.cartReducer);
+  const { products } = useSelector((state) => state.productReducer);
+  const { carts } = useSelector((state) => state.cartReducer);
 
   const handleAddToCart = (id) => {
     const addAction = addToCart(products[id]);
     dispatch(addAction);
   };
 
-  console.log(products);
   return (
     <div>
       <div className="nav">
@@ -32,7 +31,7 @@ function Home() {
       </div>
 
       <div className="page">
-        <h1>HOME</h1>
+        <h2>HOME</h2>
         <div className="productList">
           {products.map((product, index) => {
             return (

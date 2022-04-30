@@ -1,4 +1,5 @@
 .App {
+  font-family: "Poppins", sans-serif;
   text-align: center;
 }
 
@@ -6,18 +7,18 @@
   position: fixed;
   top: 0;
   width: 100%;
-  height: 100px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 30px;
   padding: 20px 200px;
-  background-color: blanchedalmond;
+  background-color: #125b50;
   z-index: 10;
 }
 
 .page {
-  margin-top: 150px;
+  padding-top: 120px;
 }
 
 .productList {
@@ -46,10 +47,14 @@ td {
   padding: 5px 10px;
 }
 
+th {
+  background-color: #65c18c;
+}
+
 .lenghtCart {
-  position: absolute;
+  position: fixed;
   right: 190px;
-  top: 22px;
+  top: 11px;
 
   color: white;
   background-color: red;
@@ -58,4 +63,14 @@ td {
   width: 20px;
   border-radius: 50%;
   padding: 1px;
+  z-index: 10;
+}
+
+h2 {
+  text-align: left;
+  margin-left: 100px;
+}
+
+svg {
+  color: #faf5e4;
 }
