@@ -74,3 +74,20 @@ h2 {
 svg {
   color: #faf5e4;
 }
+
+.btnQuantity {
+  border-radius: 4px;
+  margin: 0px 8px;
+  border: none;
+  padding: 0px 6px;
+  cursor: pointer;
+  background-color: #c3e5ae;
+}
+
+.total{
+  font-weight: bold;
+  font-size: 20px;
+  text-align: right;
+  padding-right: 20%;
+  padding-top: 20px;
+}

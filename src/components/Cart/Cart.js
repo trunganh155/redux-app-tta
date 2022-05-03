@@ -1,10 +1,16 @@
+import { Button } from "antd";
+import { useEffect, useState } from "react";
+import { HiHome, HiShoppingCart } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { HiHome, HiShoppingCart } from "react-icons/hi";
-import { Button } from "antd";
-import { removeToCart } from "../../redux/_cart";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeToCart,
+} from "../../redux/_cart";
 
 export default function Cart() {
+  const [total, setTotal] = useState(0);
   const dispatch = useDispatch();
   const { carts } = useSelector((state) => state.cartReducer);
 
@@ -12,6 +18,25 @@ export default function Cart() {
     const removeAction = removeToCart(id);
     dispatch(removeAction);
   };
+
+  const handleIncreaseQuantity = (id) => {
+    const increaseQuantityAction = increaseQuantity(id);
+    dispatch(increaseQuantityAction);
+  };
+
+  const handleDecreaseQuantity = (id) => {
+    const decreaseQuantityAction = decreaseQuantity(id);
+    dispatch(decreaseQuantityAction);
+  };
+
+  useEffect(() => {
+    let sum = 0;
+    for (let i = 0; i < carts.length; i++) {
+      sum += carts[i].product.price * carts[i].quantity;
+    }
+
+    setTotal(sum);
+  }, [carts]);
 
   return (
     <div className="cart">
@@ -35,29 +60,48 @@ export default function Cart() {
                 <th>NO</th>
                 <th>Name</th>
                 <th>Image</th>
+                <th>Quantity</th>
                 <th>Price</th>
                 <th>Edit</th>
-                {/* <th>Quantity</th> */}
               </tr>
-              {carts.map((product, index) => {
+              {carts.map((cart, index) => {
                 return (
                   <tr key={index}>
                     <td style={{ width: 20 }}>{index + 1}</td>
-                    <td>{product.name}</td>
+                    <td>{cart.product.name}</td>
                     <td>
                       <img
-                        src={product.img}
+                        src={cart.product.img}
                         alt="img"
                         style={{ width: "80px", height: "80px" }}
                       />
                     </td>
-                    <td>{product.price}$</td>
+                    <td className="quantity">
+                      <button
+                        className="btnQuantity"
+                        onClick={() => {
+                          handleIncreaseQuantity(cart.product.id);
+                        }}
+                      >
+                        +
+                      </button>
+                      {cart.quantity}
+                      <button
+                        className="btnQuantity"
+                        onClick={() => {
+                          handleDecreaseQuantity(cart.product.id);
+                        }}
+                      >
+                        -
+                      </button>
+                    </td>
+                    <td>${cart.product.price}</td>
                     <td style={{ width: 150 }}>
                       <Button
                         type="danger"
                         shape="round"
                         onClick={() => {
-                          handleRemoveToCart(product.id);
+                          handleRemoveToCart(cart.product.id);
                         }}
                       >
                         Remove
@@ -67,6 +111,10 @@ export default function Cart() {
                 );
               })}
             </table>
+
+            <div>
+              <p className="total">Total: ${total.toLocaleString()}</p>
+            </div>
           </div>
         ) : (
           <h3>Cart is empty</h3>

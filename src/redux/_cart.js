@@ -8,14 +8,46 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const newProduct = action.payload;
+      const cartItem = {
+        product: newProduct,
+        quantity: 1,
+      };
 
-      state.carts.push(newProduct);
+      const index = state.carts.findIndex(
+        (cart) => cart.product.id === newProduct.id
+      );
+      if (index === -1) {
+        state.carts.push(cartItem);
+      } else {
+        state.carts[index].quantity = state.carts[index].quantity + 1;
+      }
     },
+
+    increaseQuantity: (state, action) => {
+      const productId = action.payload;                 //lay du lieu tu action.payload
+      const index = state.carts.findIndex(              //tim vi tri cua san pham duoc click o trang cart trong mang carts
+        (cart) => cart.product.id === productId
+      );
+
+      state.carts[index].quantity = state.carts[index].quantity + 1;    //tang so luong len 1
+    },
+
+    decreaseQuantity: (state, action) => {
+      const productId = action.payload;
+      const index = state.carts.findIndex(
+        (cart) => cart.product.id === productId
+      );
+
+      if (state.carts[index].quantity > 1) {
+        state.carts[index].quantity = state.carts[index].quantity - 1;
+      }
+    },
+    
     removeToCart: (state, action) => {
-      const id = action.payload;
+      const productId = action.payload;
 
       state.carts.splice(
-        state.carts.findIndex((product) => product.id === id),
+        state.carts.findIndex((cart) => cart.product.id === productId),
         1
       );
     },
@@ -23,6 +55,7 @@ export const cartSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart, removeToCart } = cartSlice.actions;
+export const { addToCart, removeToCart, increaseQuantity, decreaseQuantity } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

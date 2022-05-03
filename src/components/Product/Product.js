@@ -21,7 +21,7 @@ function Product(props) {
         {props.data.name}
       </p>
       <p style={{ color: "red", fontWeight: "bold", textAlign: "left" }}>
-        {props.data.price}$
+        ${props.data.price.toLocaleString()}
       </p>
 
       <Button
