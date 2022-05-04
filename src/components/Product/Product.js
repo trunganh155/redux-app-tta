@@ -6,6 +6,10 @@ function Product(props) {
   };
 
   const showNotification = (productName) => {
+    notification.config({
+      top: 80,
+    });
+
     notification.success({
       className: "notification-custom",
       message: <span className="notification-title">Add To Cart</span>,

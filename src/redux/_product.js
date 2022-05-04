@@ -23,7 +23,7 @@ const initialState = {
     {
       id: 3,
       name: "iPhone 13 Mini",
-      price: 1159,
+      price: 1199,
       img: "https://cdn.didongviet.vn/pub/media/catalog/product//i/p/iphone-13-256gb-xanh-duong-didongviet_1.jpg",
     },
     {
