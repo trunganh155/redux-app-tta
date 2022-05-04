@@ -73,19 +73,10 @@ export default function Cart() {
                       <img
                         src={cart.product.img}
                         alt="img"
-                        style={{ width: "80px", height: "80px" }}
+                        style={{ width: "68px", height: "68px" }}
                       />
                     </td>
                     <td className="quantity">
-                      <button
-                        className="btnQuantity"
-                        onClick={() => {
-                          handleIncreaseQuantity(cart.product.id);
-                        }}
-                      >
-                        +
-                      </button>
-                      {cart.quantity}
                       <button
                         className="btnQuantity"
                         onClick={() => {
@@ -93,6 +84,17 @@ export default function Cart() {
                         }}
                       >
                         -
+                      </button>
+
+                      {cart.quantity}
+
+                      <button
+                        className="btnQuantity"
+                        onClick={() => {
+                          handleIncreaseQuantity(cart.product.id);
+                        }}
+                      >
+                        +
                       </button>
                     </td>
                     <td>${cart.product.price}</td>

@@ -1,8 +1,22 @@
-import { Card, Button } from "antd";
+import { Button, Card, notification } from "antd";
 
 function Product(props) {
   const clickBtnAdd = (id) => {
     props.handleAddToCart(id);
+  };
+
+  const showNotification = (productName) => {
+    notification.success({
+      className: "notification-custom",
+      message: <span className="notification-title">Add To Cart</span>,
+      description: (
+        <div>
+          <span className="notification-productName">{productName}</span>
+          <span> has been added to cart.</span>
+        </div>
+      ),
+      duration: 1.5,
+    });
   };
 
   return (
@@ -29,6 +43,7 @@ function Product(props) {
         shape="round"
         onClick={() => {
           clickBtnAdd(props.data.id);
+          showNotification(props.data.name);
         }}
       >
         Add to cart

@@ -84,10 +84,28 @@ svg {
   background-color: #c3e5ae;
 }
 
-.total{
+.total {
   font-weight: bold;
   font-size: 20px;
   text-align: right;
   padding-right: 20%;
   padding-top: 20px;
+}
+
+.notification-custom {
+  color: #000;
+}
+
+.notification-title {
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.notification-productName {
+  font-weight: bold;
+}
+
+.notification-custom svg {
+  font-weight: bold;
+  color: #2e7d32;
 }
