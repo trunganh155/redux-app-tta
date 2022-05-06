@@ -26,10 +26,10 @@ function Product(props) {
   return (
     <Card
       hoverable
-      style={{ width: 250 }}
+      style={{ width: "100%" }}
       cover={
         <img
-          style={{ width: 200, marginLeft: 25 }}
+          style={{ width: "60%", marginLeft: "20%", marginTop: "5%"  }}
           alt="example"
           src={props.data.img}
         />

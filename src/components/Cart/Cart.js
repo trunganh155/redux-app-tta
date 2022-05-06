@@ -1,6 +1,6 @@
-import { Button } from "antd";
 import { useEffect, useState } from "react";
 import { HiHome, HiShoppingCart } from "react-icons/hi";
+import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -67,47 +67,48 @@ export default function Cart() {
               {carts.map((cart, index) => {
                 return (
                   <tr key={index}>
-                    <td style={{ width: 20 }}>{index + 1}</td>
+                    <td style={{ maxWidth: "10px" }}>{index + 1}</td>
                     <td>{cart.product.name}</td>
                     <td>
                       <img
+                        className="imgInCart"
                         src={cart.product.img}
                         alt="img"
-                        style={{ width: "68px", height: "68px" }}
                       />
                     </td>
-                    <td className="quantity">
-                      <button
-                        className="btnQuantity"
-                        onClick={() => {
-                          handleDecreaseQuantity(cart.product.id);
-                        }}
-                      >
-                        -
-                      </button>
+                    <td>
+                      <div className="quantity">
+                        <button
+                          className="btnQuantity"
+                          onClick={() => {
+                            handleDecreaseQuantity(cart.product.id);
+                          }}
+                        >
+                          -
+                        </button>
 
-                      {cart.quantity}
+                        {cart.quantity}
 
-                      <button
-                        className="btnQuantity"
-                        onClick={() => {
-                          handleIncreaseQuantity(cart.product.id);
-                        }}
-                      >
-                        +
-                      </button>
+                        <button
+                          className="btnQuantity"
+                          onClick={() => {
+                            handleIncreaseQuantity(cart.product.id);
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
                     </td>
-                    <td>${cart.product.price}</td>
-                    <td style={{ width: 150 }}>
-                      <Button
-                        type="danger"
-                        shape="round"
+                    <td className="priceInCart">
+                      $ {cart.product.price.toLocaleString()}
+                    </td>
+                    <td>
+                      <MdDelete
+                        className="btnRemove"
                         onClick={() => {
                           handleRemoveToCart(cart.product.id);
                         }}
-                      >
-                        Remove
-                      </Button>
+                      />
                     </td>
                   </tr>
                 );
